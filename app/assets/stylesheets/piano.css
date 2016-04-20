@@ -1,0 +1,26 @@
+.piano {
+  width: 800px;
+  height: 400px;
+  background-color: teal;
+  display: flex;
+}
+
+.key {
+  width: 100px;
+  outline: 1px solid black;
+  padding: 3px;
+}
+
+.key.white {
+  background-color: white;
+  color: black;
+}
+
+.key.black {
+  background-color: black;
+  color: white;
+}
+
+.key.pressed {
+  background-color: teal;
+}

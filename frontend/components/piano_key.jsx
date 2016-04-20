@@ -30,9 +30,11 @@ var PianoKey = React.createClass({
 
   render: function () {
     var pressedClass = this.state.pressed ? "pressed" : "";
+    var color = this.props.noteName.match(/b/) ? 'black' : 'white';
+    var className = pressedClass + " key " + color;
     return (
-      <div>
-        class: {pressedClass}
+      <div className={className}>
+        {this.props.noteName}
       </div>
     );
   }

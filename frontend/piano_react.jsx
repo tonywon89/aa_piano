@@ -11,7 +11,7 @@ var PianoGrinder = React.createClass({
   render: function() {
     return (
       <div>
-        <Piano />
+        <Piano className={"piano"}/>
       </div>
     );
   }

@@ -9,7 +9,7 @@ var Piano = React.createClass({
       return <PianoKey key={idx} noteName={noteName}/>;
     });
     return (
-      <div>
+      <div className={"piano"}>
         {keys}
       </div>
     );
