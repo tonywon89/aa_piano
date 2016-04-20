@@ -7,7 +7,7 @@ var KeyStore = new Store(dispatcher);
 
 var addKey = function(noteName) {
   if(_keys.indexOf(noteName) === -1){
-    _keys.push(noteName);
+    _keys = _keys.concat(noteName);
     KeyStore.__emitChange();
   }
 };
@@ -22,8 +22,13 @@ var removeKey = function (noteName) {
   }
 };
 
+var emptyKeys = function() {
+  _keys = [];
+  KeyStore.__emitChange();
+};
+
 KeyStore.allKeys = function() {
-  return _keys.splice();
+  return _keys.slice();
 };
 
 KeyStore.isDown = function (noteName) {
@@ -37,6 +42,10 @@ KeyStore.__onDispatch = function(payload) {
     break;
   case "KEY_RELEASED":
     removeKey(payload.noteName);
+    break;
+  case "NOTES_PLAYED":
+    emptyKeys();
+    addKey(payload.notes);
     break;
   }
 };

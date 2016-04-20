@@ -13,6 +13,13 @@ var KeyActions = {
       actionType: 'KEY_RELEASED',
       noteName: note
     });
+  },
+
+  notesPlayed: function(notes) {
+    dispatcher.dispatch({
+      actionType: 'NOTES_PLAYED',
+      notes: notes
+    });
   }
 };
 
