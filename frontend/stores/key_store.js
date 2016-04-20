@@ -5,12 +5,31 @@ var _keys = [];
 
 var KeyStore = new Store(dispatcher);
 
+var addKey = function(noteName) {
+  if(_keys.indexOf(noteName) === -1){
+    _keys.push(noteName);
+    KeyStore.__emitChange();
+  }
+};
+
+var removeKey = function (noteName) {
+  for (var i = 0; i < _keys.length; i++) {
+    if (_keys[i] === noteName) {
+      _keys.splice(i, 1);
+      KeyStore.__emitChange();
+      return;
+    }
+  }
+};
+
 KeyStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
-    case "KEY_PRESSED":
-      _keys.push(payload.noteName);
-      KeyStore.__emitChange();
-      break;
+  case "KEY_PRESSED":
+    addKey(payload.noteName);
+    break;
+  case "KEY_RELEASED":
+    removeKey(payload.noteName);
+    break;
   }
 };
 

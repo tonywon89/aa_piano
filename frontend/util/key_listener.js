@@ -22,5 +22,6 @@ $(document).on('keydown', function (event) {
 });
 
 $(document).on('keyup', function (event) {
-
+  var note = Mapping[event.keyCode];
+  KeyActions.keyReleased(note);
 });
