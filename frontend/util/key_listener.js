@@ -1,4 +1,4 @@
-var KeyStore = require('../stores/key_store');
+var KeyActions = require('../actions/key_actions');
 
 var Mapping = {
   65: "C5",
@@ -17,7 +17,8 @@ var Mapping = {
 };
 
 $(document).on('keydown', function (event) {
-  
+  var note = Mapping[event.keyCode];
+  KeyActions.keyPressed(note);
 });
 
 $(document).on('keyup', function (event) {
