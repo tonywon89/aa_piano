@@ -1,12 +1,13 @@
-var AppDispatcher = require('../dispatcher/dispatcher');
+var dispatcher = require('../dispatcher/dispatcher');
 
 var KeyActions = {
   keyPressed: function(note) {
-    AppDispatcher.dispatch({
+    dispatcher.dispatch({
       actionType: 'KEY_PRESSED',
       noteName: note
     });
   }
+
 };
 
 module.exports = KeyActions;
