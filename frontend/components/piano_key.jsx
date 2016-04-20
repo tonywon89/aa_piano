@@ -14,6 +14,10 @@ var PianoKey = React.createClass({
     this.listener = KeyStore.addListener(this._handlePressed);
   },
 
+  componentWillUnmount: function() {
+    this.listener.remove();
+  },
+
   _handlePressed: function () {
     if (KeyStore.isDown(this.props.noteName)) {
       this.note.start();
