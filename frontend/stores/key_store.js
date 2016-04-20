@@ -22,6 +22,14 @@ var removeKey = function (noteName) {
   }
 };
 
+KeyStore.allKeys = function() {
+  return _keys.splice();
+};
+
+KeyStore.isDown = function (noteName) {
+  return (_keys.indexOf(noteName) > -1);
+};
+
 KeyStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
   case "KEY_PRESSED":
