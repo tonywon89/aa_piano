@@ -1,6 +1,7 @@
 var React = require('react');
 var Track = require('../util/track');
 var KeyStore = require('../stores/key_store');
+var TrackActions = require('../actions/track_actions');
 
 var Recorder = React.createClass({
   getInitialState: function () {
@@ -8,7 +9,11 @@ var Recorder = React.createClass({
   },
 
   componentDidMount: function () {
-    KeyStore.addListener(this.handleChange);
+    this.listener = KeyStore.addListener(this.handleChange);
+  },
+
+  componentWillUnmount: function() {
+    this.listener.remove();
   },
 
   handleChange: function() {
@@ -21,15 +26,14 @@ var Recorder = React.createClass({
     if(!this.state.isRecording){
       this.state.track.startRecording();
       this.setState({isRecording: true});
-      console.log('we are the recordings');
     }
   },
 
   stopRecording: function() {
     if(this.state.isRecording){
       this.state.track.stopRecording();
-      this.setState({isRecording: false});
-      console.log('we have stopped recordings');
+      TrackActions.saveTrack(this.state.track);
+      this.setState({isRecording: false, track: new Track({name: "Default"})});
     }
   },
 

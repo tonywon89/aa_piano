@@ -1,18 +1,20 @@
 var KeyActions = require('../actions/key_actions');
 
+var trackNum = 1; //TODO THIS WAS ADDED
+
 var Track = function(attributes) {
   this.name = attributes.name;
   this.roll = attributes.roll || [];
 };
 
 Track.prototype.startRecording = function () {
+  this.name = this.name + " " + trackNum++; //TODO THIS WAS ADDED
   this.roll = [];
   this.startTime = Date.now();
 };
 
 Track.prototype.addNotes = function (notes) {
   var timeElapsed = Date.now() - this.startTime;
-
   this.roll.push({timeSlice: timeElapsed, notes: notes});
 };
 
@@ -32,7 +34,6 @@ Track.prototype.play = function () {
       var currentTimeSlice = this.roll[currentNote].timeSlice;
       if (elapsed >= currentTimeSlice) {
         KeyActions.notesPlayed(this.roll[currentNote].notes);
-        // KeyActions.keyPressed(this.roll[currentNote].notes);
         currentNote++;
       }
     }
