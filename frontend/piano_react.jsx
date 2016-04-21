@@ -6,6 +6,7 @@ var KeyStore = require("./stores/key_store.js");
 var Piano = require("./components/piano");
 var Recorder = require("./components/recorder");
 var TrackStore = require("./stores/track_store.js");
+var Jukebox = require("./components/jukebox");
 
 var PianoGrinder = React.createClass({
   render: function() {
@@ -13,6 +14,7 @@ var PianoGrinder = React.createClass({
       <div>
         <Piano/>
         <Recorder/>
+        <Jukebox />
       </div>
     );
   }

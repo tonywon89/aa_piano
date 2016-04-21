@@ -33,7 +33,8 @@ var Recorder = React.createClass({
     if(this.state.isRecording){
       this.state.track.stopRecording();
       TrackActions.saveTrack(this.state.track);
-      this.setState({isRecording: false, track: new Track({name: "Default"})});
+      this.setState({isRecording: false,
+        track: new Track({name: "Default", roll:this.state.track.roll})});
     }
   },
 
