@@ -8,7 +8,7 @@ var Track = function(attributes) {
 };
 
 Track.prototype.startRecording = function () {
-  this.name = this.name + " " + trackNum++; //TODO THIS WAS ADDED
+  this.name = this.name + " " + trackNum++;
   this.roll = [];
   this.startTime = Date.now();
 };
@@ -23,8 +23,7 @@ Track.prototype.stopRecording = function () {
 };
 
 Track.prototype.play = function () {
-  if(this.interval) return;
-
+  if(this.intervalId) return;
   var playBackStartTime = Date.now();
   var currentNote = 0;
 
